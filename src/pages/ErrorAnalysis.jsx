@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Box, Typography, Button, Paper, CircularProgress, Alert, Container } from '@mui/material';
-import { motion } from 'framer-motion';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import axios from 'axios';
 
@@ -68,32 +67,40 @@ function ErrorAnalysis() {
       />
 
       <Container maxWidth="md">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
+        <div>
           <Typography
-            variant="h1"
+            variant="h2"
+            align="center"
+            className="fade-in-on-load"
             sx={{
-              fontSize: { xs: '2.5rem', sm: '3.5rem', md: '4.5rem' },
-              fontWeight: 'bold',
+              fontSize: { xs: '2rem', sm: '2.7rem', md: '3.2rem' },
+              fontWeight: 800,
               mb: 3,
-              color: '#ff0000',
-              fontFamily: '"Bauhaus 93", "Roboto", sans-serif',
-              textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+              letterSpacing: 6,
+              color: '#eaeaea',
+              background: 'linear-gradient(90deg, #ff4c29 0%, #00d1b2 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              textShadow: '0 2px 12px rgba(0,0,0,0.35)',
+              fontFamily: 'Montserrat, Inter, Roboto, Helvetica, Arial, sans-serif',
+              textTransform: 'uppercase',
+              textAlign: 'center',
+              mt: { xs: 10, md: 12 },
             }}
           >
             Error Analysis
           </Typography>
 
           <Paper
+            className="fade-in-on-load"
             sx={{
               mt: 4,
               p: 4,
               textAlign: 'center',
-              bgcolor: 'background.paper',
-              borderRadius: 2,
+              bgcolor: 'rgba(26,28,34,0.95)',
+              borderRadius: 3,
+              boxShadow: '0 2px 16px 0 rgba(0,0,0,0.18)',
+              color: '#eaeaea',
             }}
           >
             <input
@@ -106,7 +113,7 @@ function ErrorAnalysis() {
             <label htmlFor="image-upload">
               <Button
                 component="span"
-                variant="outlined"
+                variant="contained"
                 startIcon={<CloudUploadIcon />}
                 sx={{ mb: 2 }}
               >
@@ -167,7 +174,7 @@ function ErrorAnalysis() {
               </Box>
             )}
           </Paper>
-        </motion.div>
+        </div>
       </Container>
     </Box>
   );

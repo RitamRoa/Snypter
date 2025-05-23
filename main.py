@@ -6,6 +6,9 @@ import matplotlib.pyplot as plt
 from PIL import Image
 import shutil
 from sklearn.model_selection import train_test_split
+from flask import Flask, request, jsonify
+import tempfile
+import traceback
 
 # Define error categories
 ERROR_CATEGORIES = [
@@ -270,6 +273,42 @@ def main():
                 print(f"Error during testing: {e}")
         else:
             print("Please enter 'y' or 'n'.")
+
+
+app = Flask(__name__)
+
+@app.route('/api/analyze', methods=['POST'])
+def analyze():
+    if 'image' not in request.files:
+        return jsonify({'error': 'No image uploaded'}), 400
+    file = request.files['image']
+    if file.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
+    try:
+        with tempfile.NamedTemporaryFile(delete=False, suffix='.jpg') as tmp:
+            file.save(tmp.name)
+            image_path = tmp.name
+
+        model = load_model('best_model.h5')
+        category, confidence = predict_error(model, image_path)
+
+        description = ''
+        solution = ''
+        if category in ERROR_CATEGORIES_INFO:
+            description = ERROR_CATEGORIES_INFO[category]['description']
+            solution = ERROR_CATEGORIES_INFO[category]['solution']
+
+        result = {
+            'category': category,
+            'confidence': float(confidence) if confidence is not None else 0.0,
+            'description': description,
+            'solution': solution
+        }
+        return jsonify(result)
+    except Exception as e:
+        print("Error in /api/analyze:", e)
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
 
 
 if __name__ == "__main__":

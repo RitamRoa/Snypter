@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Box, Typography, Button, Paper, Alert, Grid, Slider, IconButton, Select, MenuItem, FormControl, InputLabel, Container } from '@mui/material';
-import { motion } from 'framer-motion';
 import VideocamIcon from '@mui/icons-material/Videocam';
 import VideocamOffIcon from '@mui/icons-material/VideocamOff';
 import SettingsIcon from '@mui/icons-material/Settings';
@@ -201,21 +200,26 @@ function LaserTracking() {
       />
 
       <Container maxWidth="md">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
+        <div>
           <Typography
             variant="h2"
             align="center"
             gutterBottom
+            className="fade-in-on-load"
             sx={{
-              color: '#ff0000',
-              fontFamily: '"Harlow Solid Italic", "Roboto", sans-serif',
-              fontStyle: 'italic',
+              fontWeight: 800,
+              fontSize: { xs: '2rem', sm: '2.7rem', md: '3.2rem' },
+              letterSpacing: 6,
+              color: '#eaeaea',
+              background: 'linear-gradient(90deg, #ff4c29 0%, #00d1b2 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              textShadow: '0 2px 12px rgba(0,0,0,0.35)',
+              fontFamily: 'Montserrat, Inter, Roboto, Helvetica, Arial, sans-serif',
+              textTransform: 'uppercase',
               mb: 4,
-              textShadow: 'none'
+              textAlign: 'center',
+              mt: { xs: 10, md: 12 },
             }}
           >
             Laser Tracking
@@ -224,12 +228,14 @@ function LaserTracking() {
           <Grid container spacing={4} sx={{ mt: 2 }}>
             <Grid item xs={12} md={8}>
               <Paper
+                className="fade-in-on-load"
                 sx={{
                   p: 2,
-                  bgcolor: 'rgba(255, 0, 0, 0.05)',
-                  borderRadius: 2,
-                  border: '1px solid rgba(255, 0, 0, 0.1)',
-                  backdropFilter: 'blur(10px)',
+                  bgcolor: 'rgba(26,28,34,0.95)',
+                  borderRadius: 3,
+                  boxShadow: '0 2px 16px 0 rgba(0,0,0,0.18)',
+                  color: '#eaeaea',
+                  border: 'none',
                 }}
               >
                 <Box sx={{ position: 'relative', width: '100%', height: '600px' }}>
@@ -324,12 +330,14 @@ function LaserTracking() {
 
             <Grid item xs={12} md={4}>
               <Paper
+                className="fade-in-on-load"
                 sx={{
                   p: 3,
-                  bgcolor: 'rgba(255, 0, 0, 0.05)',
-                  borderRadius: 2,
-                  border: '1px solid rgba(255, 0, 0, 0.1)',
-                  backdropFilter: 'blur(10px)',
+                  bgcolor: 'rgba(26,28,34,0.95)',
+                  borderRadius: 3,
+                  boxShadow: '0 2px 16px 0 rgba(0,0,0,0.18)',
+                  color: '#eaeaea',
+                  border: 'none',
                 }}
               >
                 <Typography variant="h5" gutterBottom sx={{ 
@@ -449,7 +457,7 @@ function LaserTracking() {
               {error}
             </Alert>
           )}
-        </motion.div>
+        </div>
       </Container>
     </Box>
   );

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Box, Typography, Grid, IconButton, Paper, useTheme, useMediaQuery, Container } from '@mui/material';
-import { motion } from 'framer-motion';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -77,22 +76,26 @@ function ContactUs() {
       />
 
       <Container maxWidth="md">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
+        <div>
           <Typography
             variant="h2"
             align="center"
             gutterBottom
+            className="fade-in-on-load"
             sx={{
-              color: '#ff0000',
-              fontFamily: '"Harlow Solid Italic", "Roboto", sans-serif',
-              fontStyle: 'italic',
+              fontWeight: 800,
+              fontSize: { xs: '2rem', sm: '2.7rem', md: '3.2rem' },
+              letterSpacing: 6,
+              color: '#eaeaea',
+              background: 'linear-gradient(90deg, #ff4c29 0%, #00d1b2 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              textShadow: '0 2px 12px rgba(0,0,0,0.35)',
+              fontFamily: 'Montserrat, Inter, Roboto, Helvetica, Arial, sans-serif',
+              textTransform: 'uppercase',
               mb: 4,
-              fontSize: { xs: '3rem', md: '4rem' },
-              filter: 'drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.5))',
+              textAlign: 'center',
+              mt: { xs: 10, md: 12 },
             }}
           >
             Contact Us
@@ -102,15 +105,15 @@ function ContactUs() {
             {socialLinks.map((link, index) => (
               <Grid item xs={6} sm={4} md={3} key={index}>
                 <Paper
-                  component={motion.div}
-                  whileHover={{ scale: 1.05, y: -5 }}
+                  className="fade-in-on-load"
                   sx={{
                     p: 3,
                     textAlign: 'center',
-                    bgcolor: 'rgba(0, 0, 0, 0.6)',
-                    borderRadius: 2,
-                    border: '1px solid rgba(255, 0, 0, 0.1)',
-                    backdropFilter: 'blur(10px)',
+                    bgcolor: 'rgba(26,28,34,0.95)',
+                    borderRadius: 3,
+                    boxShadow: '0 2px 16px 0 rgba(0,0,0,0.18)',
+                    color: '#eaeaea',
+                    border: 'none',
                     cursor: 'pointer',
                   }}
                   onClick={() => window.open(link.url, '_blank')}
@@ -171,7 +174,7 @@ function ContactUs() {
               any of our social media channels or contact methods above.
             </Typography>
           </Box>
-        </motion.div>
+        </div>
       </Container>
     </Box>
   );
