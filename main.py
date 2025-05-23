@@ -312,4 +312,8 @@ def analyze():
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+    if len(sys.argv) > 1 and sys.argv[1] == "serve":
+        app.run(host="0.0.0.0", port=5000, debug=True)
+    else:
+        main()
